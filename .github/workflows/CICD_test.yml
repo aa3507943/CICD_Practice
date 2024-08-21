@@ -41,8 +41,8 @@ jobs:
     - name: Generate pytest HTML report
       run: |
         pip install pytest-html
-        pytest --html = report.html
-    - uses: actions/upload-artifact@v3
+        pytest --html = report.html --self-contained-html
+    - uses: actions/upload-artifact@v2
       with:
         name: pytest-report
         path: report.html
