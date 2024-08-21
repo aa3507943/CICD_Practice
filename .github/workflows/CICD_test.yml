@@ -115,7 +115,7 @@ jobs:
     
     - name: Run test in Docker 
       run: |
-        docker run --rm -v ${{PWD}}:/app pytest-image pytest -v ${{matrix.test-file}}
+        docker run --rm -v ${PWD}:/app pytest-image pytest -v ${{matrix.test-file}}
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
