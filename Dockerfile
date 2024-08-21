@@ -7,4 +7,5 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["pytest"]
+# CMD ["pytest"]
+CMD ["sh", "-c", "python test_add.py && python test_subtract.py && python test_multiply.py && python test_divide.py"]
