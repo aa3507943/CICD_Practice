@@ -116,7 +116,8 @@ jobs:
     - name: Run test in Docker 
       run: |
         docker run --rm -v ${PWD}:/app pytest-image pytest -v ${{matrix.test-file}}
-
+      shell: pwsh
+      
     - name: Upload test results
       uses: actions/upload-artifact@v2
       if: failure()
