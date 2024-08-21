@@ -180,10 +180,10 @@ jobs:
     - name: Run test in Docker 
       run: |
         docker run --name calculator-test -v /home/runner/work/CICD_Practice/CICD_Practice:/app -v /home/runner/work/CICD_Practice/CICD_Practice:/app calculator-test
-        docker cp calculator-test:/app/test_add_results.log ./test_add_results.log
-        docker cp calculator-test:/app/test_subtract_results.log ./test_subtract_results.log
-        docker cp calculator-test:/app/test_multiply_results.log ./test_multiply_results.log
-        docker cp calculator-test:/app/test_divide_results.log ./test_divide_results.log
+        docker cp calculator-test:/app/test_add_results.log ./logs/test_add_results.log
+        docker cp calculator-test:/app/test_subtract_results.log ./logs/test_subtract_results.log
+        docker cp calculator-test:/app/test_multiply_results.log ./logs/test_multiply_results.log
+        docker cp calculator-test:/app/test_divide_results.log ./logs/test_divide_results.log
         docker rm calculator-test
 
     - name: Generate report
