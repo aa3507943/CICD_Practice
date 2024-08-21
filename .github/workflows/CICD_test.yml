@@ -179,18 +179,19 @@ jobs:
     
     - name: Run test in Docker 
       run: |
-        docker run --rm calculator-test
+        docker run --name calculator-test -v %{{github.workspace}}:/app -v %{{github.workspace}}:/app calculator-test
         docker cp calculator-test:/app/test_add_results.log ./test_add_results.log
         docker cp calculator-test:/app/test_subtract_results.log ./test_subtract_results.log
         docker cp calculator-test:/app/test_multiply_results.log ./test_multiply_results.log
         docker cp calculator-test:/app/test_divide_results.log ./test_divide_results.log
+        docker rm calculator-test
       continue-on-error: true
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
       if: failure()
       with: 
-        name: test-results-${{matrix.test-file}}
+        name: test-results
         # path: ${{github.workspace}}
         path: |
           test_add_results.log
