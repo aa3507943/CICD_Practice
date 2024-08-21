@@ -45,54 +45,7 @@
 
 
 # ========= Ubuntu =========
-# name: Ubuntu Python application
-
-# on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
-
-# permissions:
-#   contents: read
-
-# jobs:
-#   build:
-
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v4
-#     - name: Set up Python 3.12
-#       uses: actions/setup-python@v3
-#       with:
-#         python-version: "3.12"
-#     - name: Install dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         pip install flake8 pytest pytest-html
-#         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-#     - name: Lint with flake8
-#       run: |
-#         # stop the build if there are Python syntax errors or undefined names
-#         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-#         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-#         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-#     - name: Test with pytest
-#       run: |
-#         # pytest main.py --rootdir=. --html=report.html --self-contained-html
-#         pytest -v main.py
-#     - uses: actions/upload-artifact@v2
-#       with:
-#         name: pytest-report
-#         path: ./report.html
-# ========= End Ubuntu =========
-
-# ========= Windows =========
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Windows Python application
+name: Ubuntu Python application
 
 on:
   push:
@@ -106,13 +59,11 @@ permissions:
 jobs:
   build:
 
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         test-file: [test_add.py, test_subtract.py, test_multiply.py, test_divide.py]
-
-    steps:  
+    steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.12
       uses: actions/setup-python@v3
@@ -123,25 +74,78 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      shell: bash
-
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      shell: bash
-    
     - name: Test with pytest
       run: |
+        # pytest main.py --rootdir=. --html=report.html --self-contained-html
         pytest -v ${{matrix.test-file}}
-      shell: bash
-      
     - name: Upload test results
       uses: actions/upload-artifact@v2
       if: failure()
       with:
         name: test-results-${{matrix.test-file}}
         path: ${{github.workspace}}
+# ========= End Ubuntu =========
+
+# ========= Windows =========
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+# name: Windows Python application
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# permissions:
+#   contents: read
+
+# jobs:
+#   build:
+
+#     runs-on: windows-latest
+
+#     strategy:
+#       matrix:
+#         test-file: [test_add.py, test_subtract.py, test_multiply.py, test_divide.py]
+
+#     steps:  
+#     - uses: actions/checkout@v4
+#     - name: Set up Python 3.12
+#       uses: actions/setup-python@v3
+#       with:
+#         python-version: "3.12"
+#     - name: Install dependencies
+#       run: |
+#         python -m pip install --upgrade pip
+#         pip install flake8 pytest
+#         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+#       shell: bash
+
+#     - name: Lint with flake8
+#       run: |
+#         # stop the build if there are Python syntax errors or undefined names
+#         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+#         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+#         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+#       shell: bash
+    
+#     - name: Test with pytest
+#       run: |
+#         pytest -v ${{matrix.test-file}}
+#       shell: bash
+      
+#     - name: Upload test results
+#       uses: actions/upload-artifact@v2
+#       if: failure()
+#       with:
+#         name: test-results-${{matrix.test-file}}
+#         path: ${{github.workspace}}
 # ========= End Windows =========
