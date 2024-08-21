@@ -36,8 +36,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest main.py
-        pytest --rootdir=. --html=report.html --self-contained-html
+        pytest main.py --rootdir=. --html=report.html --self-contained-html
     - uses: actions/upload-artifact@v2
       with:
         name: pytest-report
