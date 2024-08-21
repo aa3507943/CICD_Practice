@@ -187,8 +187,8 @@ jobs:
         docker rm calculator-test
 
     - name: Generate report
-        run: |
-          junit -output report.xml test_add_results.log test_subtract_results.log test_multiply_results.log test_divide_results.log
+      run: |
+        junit -output report.xml test_add_results.log test_subtract_results.log test_multiply_results.log test_divide_results.log
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
