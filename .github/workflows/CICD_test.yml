@@ -46,7 +46,46 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Docker Python application
+# name: Ubuntu Docker Python application 
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# permissions:
+#   contents: read
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         test-file: [test_add.py, test_subtract.py, test_multiply.py, test_divide.py]
+#     steps:
+#     - uses: actions/checkout@v4
+
+#     - name: Set up Docker Buildx
+#       uses: docker/setup-buildx-action@v2
+
+#     - name: Build Docker image
+#       run: |
+#         docker build -t pytest-image .
+    
+#     - name: Run test in Docker 
+#       run: |
+#         docker run --rm -v ${{github.workspace}}:/app pytest-image pytest -v ${{matrix.test-file}}
+
+#     - name: Upload test results
+#       uses: actions/upload-artifact@v2
+#       if: failure()
+#       with: 
+#         name: test-results-${{matrix.test-file}}
+#         path: ${{github.workspace}}
+
+name: Windows Docker Python application 
 
 on:
   push:
@@ -60,7 +99,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         test-file: [test_add.py, test_subtract.py, test_multiply.py, test_divide.py]
@@ -76,7 +115,7 @@ jobs:
     
     - name: Run test in Docker 
       run: |
-        docker run --rm -v ${{github.workspace}}:/app pytest-image pytest -v ${{matrix.test-file}}
+        docker run --rm -v ${{PWD}}:/app pytest-image pytest -v ${{matrix.test-file}}
 
     - name: Upload test results
       uses: actions/upload-artifact@v2
