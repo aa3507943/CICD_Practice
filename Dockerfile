@@ -11,4 +11,4 @@ COPY . .
 # CMD ["pytest"] 
 
 # 不使用 pytest 進行 CI 測試流程
-CMD ["sh", "-c", "python test_add.py > test_add_result.log 2>&1 \ && python test_subtract.py > test_subtract_result.log 2>&1 \ &&  python test_multiply.py > test_multiply_result.log 2>&1 \ && python test_divide.py > test_divide_result.log 2>&1"]
+CMD ["python test_add.py > test_add_result.log 2>&1 \ && python test_subtract.py > test_subtract_result.log 2>&1 \ &&  python test_multiply.py > test_multiply_result.log 2>&1 \ && python test_divide.py > test_divide_result.log 2>&1"]
