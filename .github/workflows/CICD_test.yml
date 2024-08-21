@@ -37,7 +37,7 @@ jobs:
     - name: Test with pytest
       run: |
         # pytest main.py --rootdir=. --html=report.html --self-contained-html
-        pytest -v main.py
+        pytest -vv main.py
     - uses: actions/upload-artifact@v2
       with:
         name: pytest-report
