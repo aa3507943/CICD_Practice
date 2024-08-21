@@ -13,15 +13,15 @@ class Calculator:
         return a / b
     
 def test_add():
-    assert Calculator().add(1, 2) == 3
+    assert Calculator().add(2, 7) == 9
 
 def test_subtract():
-    assert Calculator().subtract(4, 2) == 2
+    assert Calculator().subtract(19, 6) == 13
 
 def test_multiply():
     assert Calculator().multiply(7, 13) == 91
 
 def test_divide():
-    assert Calculator().divide(10, 2) == 5
+    assert Calculator().divide(13, 4) == 3.25
     with pytest.raises(ZeroDivisionError):
         Calculator().divide(10, 0)
