@@ -180,10 +180,10 @@ jobs:
     - name: Run test in Docker 
       run: |
         docker run --name calculator-test -v ${{github.workspace}}:/app -v ${{github.workspace}}:/app calculator-test
-        docker cp calculator-test:/app/test_add_results.log ./test_add_results.log
-        docker cp calculator-test:/app/test_subtract_results.log ./test_subtract_results.log
-        docker cp calculator-test:/app/test_multiply_results.log ./test_multiply_results.log
-        docker cp calculator-test:/app/test_divide_results.log ./test_divide_results.log
+        docker cp calculator-test:/test_add_results.log ./test_add_results.log
+        docker cp calculator-test:/test_subtract_results.log ./test_subtract_results.log
+        docker cp calculator-test:/test_multiply_results.log ./test_multiply_results.log
+        docker cp calculator-test:/test_divide_results.log ./test_divide_results.log
         docker rm calculator-test
       continue-on-error: true
 
