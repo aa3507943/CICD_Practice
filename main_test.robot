@@ -1,6 +1,11 @@
 *** Settings ***
 Library          Calculator.py
 
+
+*** Keywords ***
+    ${path} = pikachu.jpg
+    Send attachment to report portal    ${path}
+
 *** Variables ***   
 
 
