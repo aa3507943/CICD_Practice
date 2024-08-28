@@ -15,12 +15,10 @@ jobs:
       - name: Setup K6
         uses: actions/setup-k6-action@v1
         with:
-          k6-version: v0.53.0
-          browser: true
+          k6-version: "0.53.0"
+          run: k6 --version | findstr "0.53.0"
       
       - name: Run local k6 load test
         uses: grafana/run-k6-action@v1
-        with:
-          path: |
-              k6_press_test.js
-
+        
+      - run: k6 run k6_press_test.js
