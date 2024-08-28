@@ -3,7 +3,7 @@ name: k6 load test
 
 on:
   push:
-    branches: - 'k6-test'
+    branches: 'k6-test'
 
 jobs:
   run-test:
