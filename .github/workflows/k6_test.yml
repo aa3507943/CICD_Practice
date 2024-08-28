@@ -19,6 +19,6 @@ jobs:
           run: k6 --version | findstr "0.53.0"
       
       - name: Run local k6 load test
-        uses: grafana/checkout@v4
+        uses: actions/checkout@v4
         
       - run: k6 run k6_press_test.js
