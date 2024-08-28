@@ -1,0 +1,22 @@
+
+name: k6 load test
+
+on:
+  push:
+    branches: - 'k6-test'
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup K6
+        uses: actions/setup-k6-action@v1
+      
+      - name: Run local k6 load test
+        uses: grafana/run-k6-action@v1
+        with:
+          filename: k6_press_test.js
+
