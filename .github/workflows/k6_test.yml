@@ -9,6 +9,11 @@ jobs:
   run-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install K6
+        run: |
+          sudo apt update
+          sudo apt install k6
+
       - name: Checkout
         uses: actions/checkout@v2
 
